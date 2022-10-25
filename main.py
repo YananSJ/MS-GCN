@@ -30,15 +30,15 @@ dil = [1,2,4,8,16,32,64,128,256,512]
 
 # use the full temporal resolution @ 100fps
 sample_rate = 1
-
+path = '/content/MS-GCN/data'
 for i in range(1,2):
     print("Training subject: " + str(i))
-    vid_list_file = "/home/deployment/data/" + args.dataset + "/splits_loso_validation/train.split" + str(i) + ".bundle"
-    vid_list_file_tst = "/home/deployment/data/" + args.dataset + "/splits_loso_validation/test.split" + str(i) + ".bundle"
-    features_path = "/home/deployment/data/" + args.dataset + "/features7/"
-    gt_path = "/home/deployment/data/" + args.dataset + "/groundTruth_/"
+    vid_list_file = path + args.dataset + "/splits_loso_validation/train.split" + str(i) + ".bundle"
+    vid_list_file_tst = path + args.dataset + "/splits_loso_validation/test.split" + str(i) + ".bundle"
+    features_path = path  + args.dataset + "/features7/"
+    gt_path = path  + args.dataset + "/groundTruth_/"
 
-    mapping_file = "/home/deployment/data/" + args.dataset + "/mapping.txt"
+    mapping_file = path  + args.dataset + "/mapping.txt"
 
     model_dir = "./models/"+args.dataset+"/split_"+str(i)
     results_dir = "./results/"+args.dataset+"/split_"+str(i)
