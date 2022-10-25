@@ -30,7 +30,7 @@ dil = [1,2,4,8,16,32,64,128,256,512]
 
 # use the full temporal resolution @ 100fps
 sample_rate = 1
-path = '/content/MS-GCN/data'
+path = '/content/MS-GCN/data/'
 for i in range(1,2):
     print("Training subject: " + str(i))
     vid_list_file = path + args.dataset + "/splits_loso_validation/train.split" + str(i) + ".bundle"
