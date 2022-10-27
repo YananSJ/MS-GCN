@@ -46,14 +46,15 @@ class BatchGenerator(object):
         for vid in batch:
             try:
                 string2 = vid[:-10]
-                features = np.load(self.features_path + string2 + 'input' + '.npy')
+
+                features = np.load(self.features_path + string2 + '_input' + '.npy')
                 features = get_features(features)
             except IOError:
-                print('stop')
+                print('IOError!stop')
             try:
                 file_ptr = np.loadtxt(self.gt_path + vid)
             except ValueError:
-                print('stop')
+                print('ValueError!stop ')
             classes = np.zeros(min(np.shape(features)[1], len(file_ptr)), dtype=int)
             for i in range(len(classes)):
                 classes[i] = file_ptr[i].astype(int)
@@ -61,7 +62,7 @@ class BatchGenerator(object):
             batch_target.append(classes[::self.sample_rate])
 
         length_of_sequences = list(map(len, batch_target))
-        batch_input_tensor = torch.zeros(len(batch_input), 6, max(length_of_sequences), 9, 1, dtype=torch.float)
+        batch_input_tensor = torch.zeros(len(batch_input), 6, max(length_of_sequences), 19, 1, dtype=torch.float)
         batch_target_tensor = torch.ones(len(batch_input), max(length_of_sequences), dtype=torch.long) * (-100)
         mask = torch.zeros(len(batch_input), self.num_classes, max(length_of_sequences), dtype=torch.float)
         sample_weight = torch.ones(len(batch_input), max(length_of_sequences), dtype=torch.float)
