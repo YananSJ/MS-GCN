@@ -22,7 +22,8 @@ class Trainer:
         self.base_lr = learning_rate
 
         optimizer = optim.Adam(self.model.parameters(), lr=self.base_lr)
-
+        list_loss = []
+        list_acc = []
         for epoch in range(num_epochs):
             epoch_loss = 0
             correct = 0
@@ -51,9 +52,14 @@ class Trainer:
                 total += torch.sum(mask[:, 0, :]).item()
 
             batch_gen.reset()
+            list_loss.append(epoch_loss / len(batch_gen.list_of_examples))
+            list_acc.append(float(correct) / total)
             if epoch + 1 == num_epochs:
                 torch.save(self.model.state_dict(), save_dir + "/epoch-" + str(epoch + 1) + ".model")
                 torch.save(optimizer.state_dict(), save_dir + "/epoch-" + str(epoch + 1) + ".opt")
+                print(list_loss)
+                print(list_acc)
+            
             print("[epoch %d]: epoch loss = %f,   acc = %f" % (epoch + 1, epoch_loss / len(batch_gen.list_of_examples),
                                                                float(correct) / total))
 
