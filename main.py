@@ -29,7 +29,7 @@ num_epochs = 100
 dil = [1,2,4,8,16,32,64,128,256,512]
 
 # use the full temporal resolution @ 100fps
-sample_rate = 1
+sample_rate = 50
 path = '/content/MS-GCN/data/'
 for i in range(1,2):
     print("Training subject: " + str(i))
