@@ -54,7 +54,7 @@ class Trainer:
             batch_gen.reset()
             list_loss.append(epoch_loss / len(batch_gen.list_of_examples))
             list_acc.append(float(correct) / total)
-            if epoch + 1 == num_epochs:
+            if (epoch + 1)%10 == 0:
                 torch.save(self.model.state_dict(), save_dir + "/epoch-" + str(epoch + 1) + ".model")
                 torch.save(optimizer.state_dict(), save_dir + "/epoch-" + str(epoch + 1) + ".opt")
                 print(list_loss)
