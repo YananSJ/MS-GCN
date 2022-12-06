@@ -15,7 +15,7 @@ torch.backends.cudnn.deterministic = True
 parser = argparse.ArgumentParser()
 parser.add_argument('--action', default='train')
 parser.add_argument('--dataset', default="fog")
-
+parser.add_argument('--epoch', default=100)
 args = parser.parse_args()
 
 num_stages = 4
@@ -23,13 +23,13 @@ num_layers_PG = 10
 num_layers_RF = 10
 num_f_maps = 64
 features_dim = 6
-bz = 16
-lr = 0.0005
-num_epochs = 100
+bz = 4
+lr = 0.0004
+num_epochs = int(args.epoch)
 dil = [1,2,4,8,16,32,64,128,256,512]
 
 # use the full temporal resolution @ 100fps
-sample_rate = 50
+sample_rate = 2
 path = '/content/MS-GCN/data/'
 for i in range(1,2):
     print("Training subject: " + str(i))
